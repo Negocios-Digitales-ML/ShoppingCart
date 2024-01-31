@@ -10,9 +10,15 @@
                 formControlName="email"
                 name="email"
                 class="w-full"
-                placeholder="Ingresa email"
+                placeholder="Ingresar email"
             />
         </div>
+
+        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+            <div *ngIf="email.errors?. ['required']">Email es Requerido.</div>
+            <div *ngIf="email.errors?. ['email']">Email debera ser valido.</div>
+        </small>
+
         <div class="field">
             <label for="email">Contraseña</label>
             <input 
@@ -24,10 +30,17 @@
                 placeholder="Ingresa Contraseña"
             />
         </div>
-        <p-button label="Ingresar" styleClass="w-full"></p-button>
+
+        <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
+            <div *ngIf="password.errors?.['required']">La contraseña es requerida.</div>
+            <div *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+            <div *ngIf="password.errors?.['pattern']">La contraseña debe tener al menos una letra minúscula, una mayúscula y un carácter especial.</div>
+        </small>
+
+        <p-button label="Ingresar" styleClass="w-full" [disabled]="!loginForm.valid"></p-button>
         <div class="mt-2">
             ¿No tienes cuenta? <a routerLink="/register">Registrate</a>
         </div>
-        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error"></small>
+        
     </p-card>
 </form>

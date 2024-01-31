@@ -1,1 +1,68 @@
-<p>register works!</p>
+<form [formGroup]="registerForm">
+    <p-card header="Registrar Miembro" [style]="{width: '360px'}">
+    <div class="field">
+        <label for="fullName">Nombre Completo</label>
+        <input
+         type="text"
+         pInputText
+         formControlName="fullName"
+         class="w-full"
+         name="fullName"
+         placeholder="Nombre Completo">
+    </div>
+    <small *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)" class="block p-error">
+        <div *ngIf="fullName.errors?.['required']">Nombre es requerido.</div>
+        <div *ngIf="fullName.errors?.['pattern']">El nombre debe ser valido.</div>
+    </small>
+
+    <div class="field">
+        <label for="email">Correo Electrónico</label>
+        <input 
+            type="text"
+            pInputText
+            formControlName="email"
+            name="email"
+            class="w-full"
+            placeholder="Ingresar email"
+        />
+    </div>
+
+    <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error">
+        <div *ngIf="email.errors?. ['required']">Email es Requerido.</div>
+        <div *ngIf="email.errors?. ['email']">Email debera ser valido.</div>
+    </small>
+
+    <div class="field">
+        <label for="email">Contraseña</label>
+        <input 
+            type="password"
+            pInputText
+            formControlName="password"
+            name="Contraseña"
+            class="w-full"
+            placeholder="Ingresa Contraseña"
+        />
+    </div>
+
+    <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error">
+        <div *ngIf="password.errors?.['required']">La contraseña es requerida.</div>
+        <div *ngIf="password.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres.</div>
+        <div *ngIf="password.errors?.['pattern']">La contraseña debe tener al menos una letra minúscula, una mayúscula y un carácter especial.</div>
+    </small>
+
+
+    <div class="field">
+        <label for="confirmPassword">Confirmar Contraseña</label>
+        <input 
+            type="password"
+            pInputText
+            formControlName="confirmPassword"
+            name="confirmPassword"
+            class="w-full"
+            placeholder="Ingresa Contraseña"
+        />
+    </div>
+
+  
+    </p-card>
+</form>
